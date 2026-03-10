@@ -1,5 +1,25 @@
 """
 Upload benchmark results to the PinchBench leaderboard server.
+
+模块作用：
+-----------
+本模块负责将基准测试结果上传到 PinchBench 排行榜服务器，不负责实际的评测过程。
+
+核心功能：
+- 读取已生成的结果 JSON 文件
+- 格式化数据并上传到 API 服务器 (https://api.pinchbench.com)
+- 管理 API token 的注册和存储
+- 收集系统元数据（OS、CPU、内存等）
+- 返回排名和排行榜链接
+
+不负责：
+- 执行任务或运行代理（由 lib_agent.py 负责）
+- 评分/评测逻辑（由 lib_grading.py 负责）
+
+使用流程：
+1. 基准测试完成后生成结果 JSON
+2. 调用 upload_results() 上传结果
+3. 服务器返回排名和排行榜 URL
 """
 
 from __future__ import annotations

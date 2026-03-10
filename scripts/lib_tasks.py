@@ -182,3 +182,20 @@ class TaskLoader:
             if match:
                 criteria.append(match.group(1))
         return criteria
+
+
+if __name__ == "__main__":
+    # 测试 TaskLoader
+    tasks_dir = Path(__file__).parent.parent / "tasks"
+    loader = TaskLoader(tasks_dir)
+
+    # 加载所有任务
+    tasks = loader.load_all_tasks()
+    print(f"\n加载了 {len(tasks)} 个任务:\n")
+
+    for task in tasks[:3]:
+        print(f"[{task.task_id}] {task.name}")
+        print(f"  分类: {task.category}, 评分: {task.grading_type}")
+        print(f"提示词: {task.prompt}")
+        print(f"  超时: {task.timeout_seconds}s, 标准数: {len(task.grading_criteria)}")
+        print()
